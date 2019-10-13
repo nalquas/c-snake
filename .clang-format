@@ -1,0 +1,29 @@
+BasedOnStyle: Google
+BreakBeforeBraces: Custom
+BraceWrapping:
+    # AfterCaseLabel: true
+    AfterClass: false
+    AfterControlStatement: false
+    AfterEnum: false
+    AfterFunction: false
+    AfterNamespace: false
+    AfterStruct: false
+    AfterUnion: false
+    AfterExternBlock: false
+    BeforeCatch: true
+    BeforeElse: true
+    SplitEmptyFunction: false
+    SplitEmptyRecord: false
+    SplitEmptyNamespace: false
+BreakBeforeBinaryOperators: NonAssignment
+AlwaysBreakAfterReturnType: None
+AllowShortFunctionsOnASingleLine: false
+IndentCaseLabels: true
+# IndentGotoLabels: true
+# IndentPPDirectives: BeforeHash
+AccessModifierOffset: -4
+IndentWidth: 4
+IndentWrappedFunctionNames: true
+UseTab: Never
+NamespaceIndentation: All
+# ColumnLimit: 200

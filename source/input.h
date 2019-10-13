@@ -2,7 +2,9 @@
 #define input_h
 
 #include <stdio.h>
+#include <sys/select.h>
 #include <termio.h>
+#include <unistd.h>
 
 static struct termio savemodes;
 static int havemodes = 0;
@@ -23,7 +25,15 @@ void setupEnterAvoidance() {
 }
 
 char readInput() {
-    last_input = getchar();
+    fd_set rfds;
+    struct timeval tv;
+    int retval;
+    FD_ZERO(&rfds);
+    FD_SET(0, &rfds);
+    tv.tv_sec = 0;
+    tv.tv_usec = 250000;
+    retval = select(1, &rfds, NULL, NULL, &tv);
+    if (retval > 0) last_input = getchar();
     return last_input;
 }
 

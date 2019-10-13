@@ -1,3 +1,6 @@
+#ifndef output_h
+#define output_h
+
 #include <stdio.h>
 
 #define BUFFER_SIZE_X 128
@@ -24,3 +27,4 @@ void printBuffer() {
         printf("\n");
     }
 }
+#endif

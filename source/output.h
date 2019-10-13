@@ -21,10 +21,10 @@ void clear(char c) {
 // Method to output the buffer to terminal by printing it
 void printBuffer() {
     for (int y = 0; y < BUFFER_SIZE_Y; y++) {
+        printf("\n");
         for (int x = 0; x < BUFFER_SIZE_X; x++) {
             printf("%c", buffer[x][y]);
         }
-        printf("\n");
     }
 }
 #endif

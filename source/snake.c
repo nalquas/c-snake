@@ -18,6 +18,7 @@ struct block {
 int points;
 struct block trail[MAX_TRAIL_LENGTH];
 int trail_index = 0;
+char key = 0;
 
 void clearTrail() {
     for (int i = 0; i < MAX_TRAIL_LENGTH; i++) {
@@ -48,13 +49,10 @@ void placeFood() {
     } while (buffer[food.x][food.y] != AIR && buffer[food.x][food.y] != FOOD);
 }
 
-int main(int argc, char const *argv[]) {
-    // Seed the random generator
-    srand(time(NULL));
-
-    // Setup input
-    char key = 0;
-    setupEnterAvoidance();
+void reset() {
+    // Reset input
+    key = 0;
+    last_input = 0;
 
     // Initialize game field
     clear(AIR);
@@ -64,11 +62,28 @@ int main(int argc, char const *argv[]) {
     player.y = BUFFER_SIZE_Y / 2;
     points = 0;
     placeFood();
+}
+
+int main(int argc, char const *argv[]) {
+    // Seed the random generator
+    srand(time(NULL));
+
+    // Setup input
+    setupEnterAvoidance();
+
+    // Initialize game
+    reset();
 
     // Game loop
     while (key != 'q') {
         // Get Input
         key = readInput();
+
+        // Check for reset key
+        if (key == 'r') {
+            reset();
+            continue;
+        }
 
         if (points > 0) {
             // Remove old trail block

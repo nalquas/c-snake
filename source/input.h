@@ -35,7 +35,7 @@ char readInput() {
     char character = 0;
     if (retval > 0) character = getchar();
     if (character == 'w' || character == 's' || character == 'a'
-        || character == 'd' || character == 'q')
+        || character == 'd' || character == 'q' || character == 'r')
         last_input = character;
     return last_input;
 }

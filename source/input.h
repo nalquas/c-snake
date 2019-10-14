@@ -32,7 +32,11 @@ char readInput() {
     tv.tv_sec = 0;
     tv.tv_usec = 250000;
     retval = select(1, &rfds, NULL, NULL, &tv);
-    if (retval > 0) last_input = getchar();
+    char character = 0;
+    if (retval > 0) character = getchar();
+    if (character == 'w' || character == 's' || character == 'a'
+        || character == 'd' || character == 'q')
+        last_input = character;
     return last_input;
 }
 

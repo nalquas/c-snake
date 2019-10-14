@@ -4,7 +4,6 @@
 #include <stdio.h>
 #include <sys/select.h>
 #include <termio.h>
-#include <unistd.h>
 
 static struct termio savemodes;
 static int havemodes = 0;

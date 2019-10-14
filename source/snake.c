@@ -9,11 +9,22 @@
 #define FOOD 'F'
 #define AIR ' '
 
+#define MAX_TRAIL_LENGTH 4096  // BUFFER_SIZE_X * BUFFER_SIZE_Y
+
 struct block {
     int x;
     int y;
 } player, food;
 int points;
+struct block trail[MAX_TRAIL_LENGTH];
+int trail_index = 0;
+
+void clearTrail() {
+    for (int i = 0; i < MAX_TRAIL_LENGTH; i++) {
+        trail[i].x = -1;
+        trail[i].y = -1;
+    }
+}
 
 void createGameField() {
     // Walls
@@ -48,6 +59,7 @@ int main(int argc, char const *argv[]) {
     // Initialize game field
     clear(AIR);
     createGameField();
+    clearTrail();
     player.x = BUFFER_SIZE_X / 2;
     player.y = BUFFER_SIZE_Y / 2;
     points = 0;
@@ -58,8 +70,23 @@ int main(int argc, char const *argv[]) {
         // Get Input
         key = readInput();
 
-        // Replace old position with wall
-        buffer[player.x][player.y] = WALL;
+        if (points > 0) {
+            // Remove old trail block
+            buffer[trail[trail_index].x][trail[trail_index].y] = AIR;
+        }
+
+        // Replace old player position with wall (trail)
+        buffer[player.x][player.y] = (points > 0) ? WALL : AIR;
+        trail[trail_index].x = player.x;
+        trail[trail_index].y = player.y;
+
+        if (points > 0) {
+            // Iterate through trail array
+            trail_index++;
+            if (trail_index >= points) {
+                trail_index = 0;
+            }
+        }
 
         // Update player position
         switch (key) {

@@ -9,7 +9,7 @@
 #define FOOD 'F'
 #define AIR ' '
 
-#define MAX_TRAIL_LENGTH 4096  // BUFFER_SIZE_X * BUFFER_SIZE_Y
+#define MAX_TRAIL_LENGTH 1024  // BUFFER_SIZE_X * BUFFER_SIZE_Y
 
 struct block {
     int x;

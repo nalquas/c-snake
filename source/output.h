@@ -3,8 +3,8 @@
 
 #include <stdio.h>
 
-#define BUFFER_SIZE_X 128
-#define BUFFER_SIZE_Y 32
+#define BUFFER_SIZE_X 64
+#define BUFFER_SIZE_Y 16
 
 // Screen buffer
 char buffer[BUFFER_SIZE_X][BUFFER_SIZE_Y] = {};

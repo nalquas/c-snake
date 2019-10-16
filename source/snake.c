@@ -64,6 +64,30 @@ void reset() {
     placeFood();
 }
 
+void gameover() {
+    printf("\n\nGAME OVER\nYour score: %d\n", points);
+
+    // Ask whether to reset or not:
+    while (key != 'y' && key != 'n') {
+        printf("Reset? [y/n]: ");
+        key = getchar();
+        printf("\n");
+    }
+    switch (key) {
+        case 'y':
+            reset();
+            printf("\n");
+            break;
+        case 'n':
+            key = 'q';
+            printf("\n\nHere, have a look at your death:");
+            break;
+        default:
+            printf(" Illegal Input. How did you get here anyway?!\n");
+            break;
+    }
+}
+
 int main(int argc, char const *argv[]) {
     // Seed the random generator
     srand(time(NULL));
@@ -119,6 +143,11 @@ int main(int argc, char const *argv[]) {
                 break;
             default:
                 break;
+        }
+
+        // Check new player position for wall
+        if (buffer[player.x][player.y] == WALL) {
+            gameover();
         }
 
         // Check new player position for food

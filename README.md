@@ -13,3 +13,8 @@ To compile, just use:
 make
 ```
 The compiled binary will be located next to the makefile.
+
+Alternatively, you can compile it manually using gcc:
+```
+gcc ./source/snake.c -o snake.o
+```
